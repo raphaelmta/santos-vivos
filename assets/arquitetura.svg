@@ -1,0 +1,147 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="650" viewBox="0 0 1100 650" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13">
+  <defs>
+    <marker id="seta" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,5 L0,10 z" fill="#5b4a3f"/>
+    </marker>
+    <style>
+      .caixa { fill:#fffaf2; stroke:#8c3b3b; stroke-width:1.6; rx:10; }
+      .zona  { fill:#f3ece1; stroke:#c9b8a3; stroke-width:1; stroke-dasharray:6 4; rx:14; }
+      .t     { fill:#2b2520; }
+      .h     { fill:#2b2520; font-weight:600; font-size:15px; }
+      .m     { fill:#7a6f66; font-size:12px; }
+      .z     { fill:#8c3b3b; font-weight:600; font-size:13px; letter-spacing:.06em; }
+      .fluxo { fill:none; stroke:#5b4a3f; stroke-width:1.8; marker-end:url(#seta); }
+      .fluxo2{ fill:none; stroke:#8c3b3b; stroke-width:1.8; marker-end:url(#seta); }
+      .passo { fill:#8c3b3b; }
+      .pn    { fill:#fff; font-weight:700; font-size:12px; }
+    </style>
+  </defs>
+  <rect width="1100" height="650" fill="#f7f3ec"/>
+  <text x="24" y="34" class="h" font-size="20">Santos Vivos — arquitetura e fluxo de um turno</text>
+
+  <!-- Zona: navegador -->
+  <rect x="24" y="60" width="230" height="200" class="zona"/>
+  <text x="40" y="84" class="z">NAVEGADOR</text>
+  <rect x="40" y="100" width="198" height="54" class="caixa"/>
+  <text x="52" y="122" class="h">Página inicial</text>
+  <text x="52" y="140" class="m">cartões com foto · seleção do santo</text>
+  <rect x="40" y="168" width="198" height="74" class="caixa"/>
+  <text x="52" y="190" class="h">Tela de chat</text>
+  <text x="52" y="208" class="m">foto do santo · aviso de simulação</text>
+  <text x="52" y="226" class="m">resposta + fontes expansíveis</text>
+
+  <!-- Zona: frontend -->
+  <rect x="290" y="60" width="230" height="200" class="zona"/>
+  <text x="306" y="84" class="z">FRONTEND · Next.js :3000</text>
+  <rect x="306" y="100" width="198" height="54" class="caixa"/>
+  <text x="318" y="122" class="h">Páginas (SSR + client)</text>
+  <text x="318" y="140" class="m">/ e /santo/[slug]</text>
+  <rect x="306" y="168" width="198" height="74" class="caixa"/>
+  <text x="318" y="190" class="h">Proxy /api/[...path]</text>
+  <text x="318" y="208" class="m">timeout · logs no terminal</text>
+  <text x="318" y="226" class="m">erros amigáveis (503/404/409/400)</text>
+
+  <!-- Zona: backend -->
+  <rect x="556" y="60" width="520" height="420" class="zona"/>
+  <text x="572" y="84" class="z">BACKEND · Java 21 · Spring Boot · LangChain4j · Lucene :8080</text>
+
+  <rect x="572" y="100" width="488" height="46" class="caixa"/>
+  <text x="584" y="120" class="h">ApiController</text>
+  <text x="584" y="137" class="m">GET /api/santos · GET /api/santos/{slug}/foto · POST /api/santos/{slug}/chat</text>
+
+  <!-- ChatService pipeline -->
+  <rect x="572" y="162" width="300" height="300" class="caixa"/>
+  <text x="584" y="184" class="h">ChatService — turno</text>
+
+  <circle cx="596" cy="212" r="10" class="passo"/><text x="592" y="216" class="pn">1</text>
+  <text x="614" y="208" class="t">Recuperação (Lucene BM25, sem LLM)</text>
+  <text x="614" y="224" class="m">k=6 trechos + ≥2 da biografia, rotulados</text>
+
+  <circle cx="596" cy="258" r="10" class="passo"/><text x="592" y="262" class="pn">2</text>
+  <text x="614" y="254" class="t">Geração em personagem (LLM, chamada 1)</text>
+  <text x="614" y="270" class="m">regras de fidelidade + voz.md · marcadores [n]</text>
+
+  <circle cx="596" cy="304" r="10" class="passo"/><text x="592" y="308" class="pn">3</text>
+  <text x="614" y="300" class="t">Verificação doutrinal (LLM, chamada 2)</text>
+  <text x="614" y="316" class="m">aprovado · reescrever (1x) · bloquear</text>
+
+  <circle cx="596" cy="350" r="10" class="passo"/><text x="592" y="354" class="pn">4</text>
+  <text x="614" y="346" class="t">Fontes a partir dos [n] usados</text>
+  <text x="614" y="362" class="m">texto PT + original FR + URL + licença</text>
+
+  <circle cx="596" cy="396" r="10" class="passo"/><text x="592" y="400" class="pn">5</text>
+  <text x="614" y="392" class="t">Cache em memória (1º turno aprovado)</text>
+  <text x="614" y="408" class="m">só depois disso a resposta é exibida</text>
+
+  <!-- Infra do backend: índice, modelo -->
+  <rect x="888" y="162" width="172" height="86" class="caixa"/>
+  <text x="900" y="184" class="h">IndiceLucene</text>
+  <text x="900" y="202" class="m">BM25 em memória</text>
+  <text x="900" y="218" class="m">PortugueseAnalyzer</text>
+  <text x="900" y="234" class="m">511 trechos (Teresinha)</text>
+
+  <rect x="888" y="264" width="172" height="110" class="caixa"/>
+  <text x="900" y="286" class="h">ChatModel (LangChain4j)</text>
+  <text x="900" y="306" class="m">dev: ClaudeCodeChatModel</text>
+  <text x="900" y="322" class="m">→ claude -p --model haiku</text>
+  <text x="900" y="344" class="m">prod: AnthropicChatModel</text>
+  <text x="900" y="360" class="m">→ API claude-haiku-5-5</text>
+
+  <rect x="888" y="390" width="172" height="72" class="caixa"/>
+  <text x="900" y="412" class="h">Pipeline (offline)</text>
+  <text x="900" y="430" class="m">baixar · traduzir · biografia</text>
+  <text x="900" y="446" class="m">mesmo ChatModel</text>
+
+  <!-- Zona: pacote do santo -->
+  <rect x="24" y="300" width="496" height="180" class="zona"/>
+  <text x="40" y="324" class="z">PACOTE DO SANTO · santos/&lt;slug&gt;/ (git, legível por humanos)</text>
+  <rect x="40" y="340" width="140" height="120" class="caixa"/>
+  <text x="52" y="362" class="h">santo.json</text>
+  <text x="52" y="380" class="m">nome, datas, ativo</text>
+  <text x="52" y="396" class="m">fotoCredito</text>
+  <text x="52" y="412" class="m">fidelidadeVoz</text>
+  <text x="52" y="440" class="h">foto.jpg</text>
+  <rect x="196" y="340" width="140" height="120" class="caixa"/>
+  <text x="208" y="362" class="h">voz.md</text>
+  <text x="208" y="380" class="m">perfil de voz:</text>
+  <text x="208" y="396" class="m">temas, vocabulário,</text>
+  <text x="208" y="412" class="m">fatos consolidados,</text>
+  <text x="208" y="428" class="m">trechos-âncora</text>
+  <rect x="352" y="340" width="152" height="120" class="caixa"/>
+  <text x="364" y="362" class="h">corpus/</text>
+  <text x="364" y="380" class="m">fr/*.md originais</text>
+  <text x="364" y="396" class="m">pt/*.md traduções com</text>
+  <text x="364" y="412" class="m">marcadores de trecho</text>
+  <text x="364" y="428" class="m">+ biografia (secundária)</text>
+
+  <!-- Zona: fontes externas -->
+  <rect x="24" y="500" width="1052" height="122" class="zona"/>
+  <text x="40" y="614" class="z">FONTES EXTERNAS · lidas só pelo pipeline, nunca em tempo de conversa</text>
+  <rect x="40" y="540" width="300" height="54" class="caixa"/>
+  <text x="52" y="562" class="h">Wikisource FR</text>
+  <text x="52" y="580" class="m">Histoire d'une âme (1912) · domínio público</text>
+  <rect x="360" y="540" width="300" height="54" class="caixa"/>
+  <text x="372" y="562" class="h">Wikipédia PT</text>
+  <text x="372" y="580" class="m">biografia · CC BY-SA 4.0 · fonte secundária</text>
+  <rect x="680" y="540" width="380" height="54" class="caixa"/>
+  <text x="692" y="562" class="h">Wikimedia Commons</text>
+  <text x="692" y="580" class="m">fotos com licença livre</text>
+
+  <!-- Fluxos -->
+  <path d="M238,127 L306,127" class="fluxo"/>
+  <path d="M238,205 L306,205" class="fluxo"/>
+  <path d="M504,205 L572,205 L572,146" class="fluxo" style="marker-end:none"/>
+  <path d="M504,205 C540,205 540,123 572,123" class="fluxo"/>
+  <path d="M716,146 L716,162" class="fluxo"/>
+  <path d="M872,212 L888,212" class="fluxo"/>
+  <path d="M872,258 L888,300" class="fluxo2"/>
+  <path d="M872,304 L888,330" class="fluxo2"/>
+  <path d="M520,400 C546,400 546,330 572,330" class="fluxo" stroke-dasharray="5 4"/>
+  <path d="M974,462 L974,480 L560,480 L560,470 L428,470 L428,460" class="fluxo" stroke-dasharray="5 4"/>
+  <path d="M190,540 L190,520 L974,520" class="fluxo" stroke-dasharray="5 4" style="marker-end:none"/>
+  <path d="M510,540 L510,520" class="fluxo" stroke-dasharray="5 4" style="marker-end:none"/>
+  <path d="M880,540 L880,520" class="fluxo" stroke-dasharray="5 4" style="marker-end:none"/>
+
+  <text x="600" y="494" class="m">pipeline escreve o pacote do santo</text>
+  <text x="24" y="642" class="m">Linhas cheias: tempo de conversa. Tracejadas: pacote lido na subida do backend e preparação offline pelo pipeline. Vermelhas: chamadas ao modelo (2 por turno).</text>
+</svg>

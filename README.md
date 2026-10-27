@@ -53,6 +53,22 @@ resposta convincente e errada.
 Um aviso fixo deixa claro que é uma simulação baseada nos escritos, e o próprio personagem admite ser uma simulação
 quando perguntado.
 
+### Como está hoje (capturas reais da PoC)
+
+**Página inicial.** Seleção do santo; os que ainda não têm corpus aparecem como "em preparação".
+
+![Página inicial com os cartões dos santos](assets/tela-inicial.png)
+
+**Tela de chat.** Foto do santo no cabeçalho e ao lado de cada resposta, aviso de simulação, resposta com marcadores
+de fonte e linha de diagnóstico (categoria, veredito do verificador, tempo ou "resposta em cache").
+
+![Tela de chat com duas perguntas respondidas](assets/tela-chat.png)
+
+**Fontes expandidas.** Cada marcador abre o trecho em português e, dentro dele, o original em francês, com link para a
+fonte e a licença.
+
+![Fonte expandida com o trecho traduzido e o original em francês](assets/tela-fontes.png)
+
 ## 2. Como funciona um turno de conversa
 
 ```
@@ -85,6 +101,8 @@ em personagem; um segundo pedido de reescrita vira `aprovado_com_ressalva`, exib
 
 ## 3. Arquitetura
 
+![Diagrama de arquitetura: navegador, frontend Next.js, backend Java com o pipeline do turno, pacote do santo e fontes externas](assets/arquitetura.svg)
+
 ```
 frontend/  Next.js 15 (Node 22, TypeScript, App Router)           :3000
    ├─ /                      lista de santos (SSR)
@@ -101,6 +119,8 @@ backend/   Java 21, Spring Boot 3.5, LangChain4j 1.22, Lucene 10   :8080
    ├─ llm/ModelConfig          escolhe o ChatModel: claude-code (local) ou anthropic (API)
    ├─ llm/ClaudeCodeChatModel  ChatModel do LangChain4j que executa `claude -p` (desenvolvimento local)
    └─ pipeline/Pipeline        tarefas de preparação do corpus (baixar, traduzir, biografia)
+
+assets/    imagens do README (capturas de tela e diagrama de arquitetura em SVG)
 
 santos/<slug>/   "pacote" do santo, versionado em git, legível por humanos
    ├─ santo.json      nome, datas, descrição, ativo, foto, crédito da foto, idioma do corpus, fidelidade de voz declarada
