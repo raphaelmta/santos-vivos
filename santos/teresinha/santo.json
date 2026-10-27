@@ -1,0 +1,12 @@
+{
+  "slug": "teresinha",
+  "nome": "Santa Teresinha do Menino Jesus",
+  "nomeCurto": "Teresinha",
+  "subtitulo": "Teresa de Lisieux · 1873–1897 · Doutora da Igreja",
+  "descricao": "Carmelita de Lisieux, autora de História de uma Alma. Ensina o pequeno caminho da confiança e do amor.",
+  "ativo": true,
+  "foto": "foto.jpg",
+  "fotoCredito": "Fotografia de Céline Martin, c. 1895. Domínio público (Wikimedia Commons).",
+  "idiomaCorpus": "pt",
+  "fidelidadeVoz": "alta: voz extraída dos próprios escritos (Histoire d'une âme, ed. 1912); tradução automática não revisada"
+}

@@ -1,0 +1,33 @@
+# Java / Maven
+backend/target/
+*.class
+*.jar
+*.war
+*.log
+hs_err_pid*
+
+# Node / Next.js
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/next-env.d.ts
+frontend/*.tsbuildinfo
+npm-debug.log*
+
+# Segredos e ambiente
+.env
+.env.*
+env.sh
+!.env.example
+
+# IDEs e sistema
+.idea/
+*.iml
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Python (scripts auxiliares eventuais)
+__pycache__/
+.venv/
+docs/

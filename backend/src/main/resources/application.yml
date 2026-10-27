@@ -1,0 +1,22 @@
+server:
+  port: 8080
+santos:
+  root: ../santos            # pasta com <slug>/santo.json, foto.jpg, voz.md, corpus/
+  llm: claude-code           # claude-code (local, usa `claude -p` da sua sessão) | anthropic (API, precisa ANTHROPIC_API_KEY)
+  claude-code:
+    model: haiku             # modelo passado a `claude -p --model`
+    timeout-seconds: 90
+  anthropic:
+    model: claude-haiku-5-5
+  recuperacao:
+    k: 6
+  pipeline:
+    paralelismo: 6        # traduções simultâneas na tarefa 'traduzir'
+  cache:
+    max: 500              # respostas de primeiro turno guardadas em memória
+logging:
+  level:
+    br.santosvivos: INFO
+    org.apache.lucene: WARN
+  pattern:
+    console: "%d{HH:mm:ss.SSS} %-5level [%-28.28logger{0}] %msg%n"
